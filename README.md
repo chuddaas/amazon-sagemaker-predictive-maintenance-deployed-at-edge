@@ -158,7 +158,7 @@ To get started go to the AWS Greengrass console and follow the steps below
 
 1. Groups <br/>
 2. Create Group <br/>
-3. Use easy creation <br/>
+3. Use Default Group creation <br/>
 4. Group Name: greengrass-predictive <br/>
 5. Next <br/>
 6. Leave Name for Core untouched <br/>
@@ -180,11 +180,12 @@ Use the IAM console to create an IAM role.
 3. AWS service <br/>
 4. Greengrass <br/>
 5. Next: Permissions <br/>
-6. Check AWSGreengrassResourceAccessRolePolicy <br/>
-7. Next: Review <br/>
-8. Role name: GreengrassRole (Note that role names must be unique. You will need to keep track of the RoleARN for the rest of this workshop) <br/>
-9. Create Role <br/>
-10. After creating the role, make a note of the role ARN and use it to create your awscli command. You can find the role arn in the IAM console: <br/>
+6. Search & select AWSGreengrassResourceAccessRolePolicy <br/>
+7. Next: Tags <br/>
+8. Next: Review <br/>
+9. Role name: GreengrassRole (Note that role names must be unique. You will need to keep track of the RoleARN for the rest of this workshop) <br/>
+10. Create Role <br/>
+11. After creating the role, make a note of the role ARN and use it to create your awscli command. You can find the role arn in the IAM console: <br/>
 
 
 Type GreengrassRole in the search field <br/>
@@ -194,16 +195,16 @@ You'll find the role arn in the top of the window <br/>
 For this workshop we will need to attach 2 more policies to this role.
 
 1. Cick on Attach policies <br/>
-2. Find: AmazonS3ReadOnlyAccess and click Attach policy <br/>
+2. Search: AmazonS3ReadOnlyAccess and click Attach policy <br/>
 3. Repeat the steps for AmazonSNSFullAccess <br/>
 
 This will allow Greengrass to obtain the machine learning model artifacts from your S3 bucket for deployment. It will also alow your local lambda function to publish messages to an SNS topic and call the SNS APIs.
 
 Go back to Greengrass Console. <br/>
 Go to Groups --> greengrass-predictive --> Settings <br/>
-In GroupRole, click on the "..." <br/>
+In GroupRole, click on the "Add Role" <br/>
 For IAM role, select GreengrassRole and click Save </br>
-You should see the permissions associated with the role now appear in the Settings of the Greengrass group.
+You should see the policies associated with the role now appear in the Settings of the Greengrass group.
 
 In a Cloud9 terminal:
 
@@ -269,7 +270,7 @@ The IoT Thing is the Cloud representation of your IoT device, in this case the s
 
 1. Go to the IoT Core <br/>
 2. Onboard <br/>
-3. Configure a Device <br/>
+3. Onboard a Device <br/>
 4. Get started <br/>
 5. Choose Linux and Python <br/> 
 6. Next <br/>
@@ -280,8 +281,9 @@ The IoT Thing is the Cloud representation of your IoT device, in this case the s
 
 In your Cloud9 terminal, right click the pred-maintenance-advanced folder and click New Folder. <br/>
 Name the New folder IotSensor <br/>
-upload the **connect_device_package.zip** file into this folder and follow the steps indicated in a new terminal window <br/>
+upload the **connect_device_package.zip** file into this folder and follow the steps indicated in a AWS IoT console <br/>
 Click Done <br/>
+
 **Note: you may have to enable root access in your terminal for your start shell script to excecute correctly. This can be done by typing:**
 ```bash
 sudo ./start.sh
